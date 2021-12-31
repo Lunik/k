@@ -1,0 +1,45 @@
+
+name: Test
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Start kubernetes cluster (k3s)
+        run: |
+          docker compose \
+            -f tests/docker-compose.yml \
+            --detach
+
+      - name: Install kubectl
+        uses: Azure/setup-kubectl@v1
+        with:
+          version: latest
+
+      - name: Install k
+        run: |
+          cp k /usr/local/bin/k
+          chmod u+x /usr/local/bin/k
+
+          k --install
+
+      - name: Debug
+        run: |
+          k cluster-info
+          k version
+
+      - name: Tear down
+        if: always()
+        run: |
+          docker compose down
