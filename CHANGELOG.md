@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 0.3.0
+
+## Features
+
+- Add Github workflow for testing k
+
+## Bugfixes
+
+
 # 0.2.0
 
 ## Features
@@ -17,6 +26,7 @@
 ## Bugfixes
 
 - Fix completion script templating
+
 
 # 0.1.0
 

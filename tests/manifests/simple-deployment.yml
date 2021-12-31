@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-simple
+  name: test-simple
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-simple
+  template:
+    metadata:
+      labels:
+        app: test-simple
+    spec:
+      containers:
+      - image: alpine:latest
+        name: default
+        command: [ "sleep", "3600" ]
+      - image: alpine:latest
+        name: other
+        command: [ "sleep", "3600" ]
