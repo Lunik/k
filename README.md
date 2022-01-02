@@ -73,7 +73,7 @@ kp -d <POD_NAME>                           # Describe pod
 The script can be configured by editing the `Configuration` section in the `k` script.
 
 | Parameter | Default value | Description |
-|:–|:-|:-|
+|:----------|:--------------|:------------|
 | `KUBECTL_BIN`  | `$(which env) kubectl`          | Location of the `kubectl` binary   |
 | `K_BASE_DIR`   | `~/.k`                          | Base directory for `k` components  |
 | `K_COMPLETION` | `${K_BASE_DIR}/bash-completion` | Path of the bash completion script |
