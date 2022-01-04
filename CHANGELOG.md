@@ -1,5 +1,17 @@
 # CHANGELOG
 
+# 0.3.0
+
+## Features
+
+- Add Github workflow for testing k
+
+## Bugfixes
+
+- Fix sed call in write config for Linux
+- Create base directory if it doesn't exists
+
+
 # 0.2.0
 
 ## Features
@@ -17,6 +29,7 @@
 ## Bugfixes
 
 - Fix completion script templating
+
 
 # 0.1.0
 

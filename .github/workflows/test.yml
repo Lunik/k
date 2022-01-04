@@ -1,0 +1,85 @@
+
+name: Test
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+  workflow_dispatch:
+
+env:
+  KUBECONFIG: /tmp/kube/config
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kubernetes:
+          - v1.21.8
+          - v1.22.5
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install kubectl
+        uses: Azure/setup-kubectl@v1
+        with:
+          version: ${{ matrix.kubernetes }}
+
+      - name: Start kubernetes cluster (k3s)
+        env:
+          K3S_VERSION: "${{ matrix.kubernetes }}-k3s1"
+        run: |
+          mkdir -p $(dirname "${KUBECONFIG}")
+          docker compose \
+            -f tests/docker-compose.yml \
+            up \
+            --detach
+
+          echo "Waiting for kubeconfig to appear"
+          while ! test -f "${KUBECONFIG}"; do
+            sleep 5
+          done
+
+          echo "Waiting for kubernetes nodes to be ready"
+          for node in $(kubectl get nodes -o name); do
+            kubectl wait --for=condition=ready --timeout=300 "${node}"
+          done
+
+      - name: Debug
+        run: |
+          kubectl cluster-info
+          kubectl version
+          kubectl get nodes
+
+      - name: Setup test environment
+        run: |
+          kubectl apply -f tests/manifests
+
+          sleep 5s
+
+          echo "Waiting for kubernetes pods to be ready"
+          for deploy in $(kubectl get deployment -o name); do
+            kubectl wait --for=condition=Available "${deploy}"
+          done
+
+      - name: Install k
+        run: |
+          cp k /usr/local/bin/k
+          chmod u+x /usr/local/bin/k
+
+          k --install
+
+      - name: Test k
+        run: |
+          chmod u+x tests/test.sh
+          tests/test.sh
+
+      - name: Tear down
+        if: always()
+        run: |
+          docker compose \
+          -f tests/docker-compose.yml \
+          down

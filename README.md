@@ -1,5 +1,7 @@
 # k a Kubectl alias
 
+[![Test](https://github.com/Lunik/k/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Lunik/k/actions/workflows/test.yml)
+
 k is a lightweight bash native script to improve productivity when using `kubectl` binary.
 
 Features :
@@ -73,7 +75,7 @@ kp -d <POD_NAME>                           # Describe pod
 The script can be configured by editing the `Configuration` section in the `k` script.
 
 | Parameter | Default value | Description |
-|:–|:-|:-|
+|:----------|:--------------|:------------|
 | `KUBECTL_BIN`  | `$(which env) kubectl`          | Location of the `kubectl` binary   |
 | `K_BASE_DIR`   | `~/.k`                          | Base directory for `k` components  |
 | `K_COMPLETION` | `${K_BASE_DIR}/bash-completion` | Path of the bash completion script |
