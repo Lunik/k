@@ -262,7 +262,7 @@ write_config () {
   shift
   value=$@
 
-  sed -i .orig 's/^\('${param}'\)=.*$/\1="'${value}'"/' "$(get_config_file)"
+  sed -i.orig -e 's/^\('${param}'\)=.*$/\1="'${value}'"/' "$(get_config_file)"
   unset _K_CONFIG_CACHE
 }
 

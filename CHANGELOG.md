@@ -1,5 +1,13 @@
 # CHANGELOG
 
+# 0.3.0
+
+## Features
+
+## Bugfixes
+
+- Fix sed call in write config for Linux
+
 # 0.2.0
 
 ## Features
