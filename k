@@ -83,6 +83,9 @@ get_instance () {
 install_soft () {
   current_dir=$(get_current_directory)
 
+  log debug "Creating base directory : ${K_BASE_DIR}"
+  mkdir -p "${K_BASE_DIR}"
+
   log info "Copying bash completion script to : ${K_COMPLETION}"
   cat << EOF > "${K_COMPLETION}"
 complete_k_ctx () {
