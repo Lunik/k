@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# 0.3.1
+
+## Patch
+
+- Fix version in scrip header
+
+
 # 0.3.0
 
 ## Features
