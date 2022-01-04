@@ -1,0 +1,21 @@
+---
+
+version: '3'
+
+services:
+  k3s:
+    image: rancher/k3s:${K3S_VERSION}
+    privileged: true
+    command: [ "server" ]
+    environment:
+      K3S_KUBECONFIG_OUTPUT: /kube/config
+      K3S_KUBECONFIG_MODE: "644"
+    ports:
+    - target: 6443
+      published: 6443
+      protocol: tcp
+      mode: host
+    volumes:
+      - type: bind
+        source: /tmp/kube
+        target: /kube

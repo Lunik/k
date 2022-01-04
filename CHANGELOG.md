@@ -4,6 +4,8 @@
 
 ## Features
 
+- Add Github workflow for testing k
+
 ## Bugfixes
 
 - Fix sed call in write config for Linux

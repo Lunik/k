@@ -1,5 +1,7 @@
 # k a Kubectl alias
 
+[![Test](https://github.com/Lunik/k/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Lunik/k/actions/workflows/test.yml)
+
 k is a lightweight bash native script to improve productivity when using `kubectl` binary.
 
 Features :
