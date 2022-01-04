@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# k - kubectl alias (v0.3.1)
+# k - kubectl alias (v0.4.0)
 # Copyright (C) 2021 by Guillaume MARTINEZ
 #
 # This file is part of k.

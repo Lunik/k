@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 0.4.0
+
+## Features
+
+
+## Bugfixes
+
+
+
 # 0.3.1
 
 ## Patch
